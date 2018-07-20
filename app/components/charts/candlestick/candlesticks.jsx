@@ -18,9 +18,16 @@ import styles from './candlesticks.css';
 
 class CandleSticks extends React.Component{
 
+    componentDidMount(){
+       this.setState({itemPrice: 'BTC-USD $10,000'});
+    }
     render(){
-        const { type, width, data, ratio } = this.props;
+        if (this.state == null || this.state.itemPrice == null){
+            return <div> Loading...</div>
+        }
 
+        const { type, width, data, ratio } = this.props;
+        const { itemPrice } = this.state;
         const margin = { left: 50, right: 30, top: 10, bottom: 25 };
 
         const xAccessor = d => d.date;
@@ -32,13 +39,13 @@ class CandleSticks extends React.Component{
 				width={width}
 				margin={margin}
 				type={type}
-				seriesName="BTC-USDT"
+				seriesName={itemPrice}
 				data={data}
 				xAccessor={xAccessor}
 				xScale={scaleTime()}
 				xExtents={xExtents}>
-                <Label x={(width - margin.left - margin.right) / 2} y={30}
-                fontSize={30} text="BTC-USD" />
+                {/* <Label x={(width - margin.left - margin.right) / 2} y={30}
+                fontSize={30} text={itemPrice} /> */}
                 <Chart id={1} yExtents={d => [d.high, d.low]}>
                     <XAxis axisAt="bottom" orient="bottom" ticks={8}/>
                     <YAxis axisAt="left" orient="left" ticks={7} />
@@ -53,11 +60,13 @@ CandleSticks.propTypes = {
     data: PropTypes.array.isRequired,
 	width: PropTypes.number.isRequired,
 	ratio: PropTypes.number.isRequired,
-	type: PropTypes.oneOf(["svg", "hybrid"]).isRequired,
+    type: PropTypes.oneOf(["svg", "hybrid"]).isRequired,
+    itemPrice : PropTypes.string
 };
 
 CandleSticks.defaultProps = {
-    type: "svg"
+    type: "svg",
+    itemPrice : "BTC-USD $10,000"
 };
 
 CandleSticks = fitWidth(CandleSticks);
