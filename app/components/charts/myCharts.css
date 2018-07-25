@@ -4,3 +4,9 @@
 .greyBackground {
     background-color: grey;
 }
+
+.chartFont {
+    color: blueviolet;
+    font-family: Arial, Helvetica, sans-serif;
+
+}

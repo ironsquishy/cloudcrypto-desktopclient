@@ -8,9 +8,21 @@
    
   </head>
   <body>
+    <!-- <div class="container-fluid">
+      <div id="debugbar" class="row">
+          <span class="col-md-4">Debug Bar: </span>
+          <button id="startws" class="col-md-4 btn btn-success">Start Websocket</button>
+          <button id="stopws" class="col-md-4 btn btn-danger">Stop Websocket</button>
+          <button id="startrest" class="col-md-4 btn btn-success">Start Rest API</button>
+          <button id="stoprest" class="col-md-4 btn btn-danger">Stop Rest API</button>    
+      </div>
+    </div> -->
     <div id="app"></div>
+    
     <script>
+      var Gdax = require('gdax');
       require('./public/bundle.js');
+      require('./renderer.js');
     </script>
   </body>
 </html>
